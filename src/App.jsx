@@ -5,7 +5,6 @@ import { auth } from './services/firebaseConfig';
 import LandingPage from './components/LandingPage';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
-import Register from './components/Register';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -46,10 +45,6 @@ function App() {
         <Route 
           path="/login" 
           element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <Login onLoginSuccess={() => undefined} />} 
-        />
-        <Route 
-          path="/register" 
-          element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <Register />} 
         />
         <Route 
           path="/dashboard" 

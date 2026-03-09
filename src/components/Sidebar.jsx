@@ -70,7 +70,7 @@ const Sidebar = ({ rainfallIntensity, setRainfallIntensity }) => {
               <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-1">Signed in as</p>
               <p className="text-sm text-gray-300 font-medium truncate flex items-center gap-2">
                 <User size={14} className="text-blue-400 shrink-0"/>
-                yuvarajyuvi0126@gmail.com
+                {auth.currentUser?.email || 'Administrator'}
               </p>
             </div>
             
