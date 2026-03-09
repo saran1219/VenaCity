@@ -1,31 +1,16 @@
-Problem Statement
-Urban centers in India often face devastating floods because management is reactive. There is a critical gap in identifying ward-level micro-hotspots before the monsoon, leading to delayed resource deployment. Jal-Drishti (VenaCity) aims to convert fragmented urban data into actionable intelligence.
+# React + Vite
 
-Key Features
-Ward-Level Heatmaps: Real-time GIS visualization using Mapbox GL JS to identify 2,500+ hotspots.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Pre-Monsoon Readiness Score: A dynamic 0-100 metric for administrators to prioritize drainage maintenance.
+Currently, two official plugins are available:
 
-Rainfall Simulation: A "What-If" slider to predict flooding based on varying rainfall intensities (e.g., 20mm vs. 100mm).
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-Automated Alerts: Instant notifications to ward officers via Firebase Cloud Messaging (FCM) when a readiness score drops below a safe threshold.
+## React Compiler
 
-System Architecture
-We utilize a Serverless Architecture to ensure the system scales automatically during high-traffic monsoon events.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-Frontend: React.js + Mapbox (GIS Mapping)
+## Expanding the ESLint configuration
 
-Database: Google Cloud Firestore (Real-time NoSQL)
-
-Processing: Firebase Cloud Functions (Predictive Logic)
-
-Auth: Firebase Authentication (Role-based access for Bureaucrats)
-
-🛠️ The "Readiness Score" Logic
-The engine calculates risk by weighting three primary factors:
-
-Topography (30%): Low-lying zones from Digital Elevation Models (DEM).
-
-Infrastructure Health (40%): Siltation levels and historical drainage capacity.
-
-Impervious Surface (30%): Percentage of concrete vs. green cover in the ward.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

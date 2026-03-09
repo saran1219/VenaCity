@@ -1,0 +1,93 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "wardId": "W-01",
+        "name": "Mylapore",
+        "elevation": 80,
+        "drainageHealth": 90,
+        "greenCover": 40
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.2650, 13.0800],
+            [80.2700, 13.0800],
+            [80.2700, 13.0850],
+            [80.2650, 13.0850],
+            [80.2650, 13.0800]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wardId": "W-02",
+        "name": "T. Nagar Lowlands",
+        "elevation": 20,
+        "drainageHealth": 50,
+        "greenCover": 20
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.2710, 13.0800],
+            [80.2760, 13.0800],
+            [80.2760, 13.0850],
+            [80.2710, 13.0850],
+            [80.2710, 13.0800]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wardId": "W-03",
+        "name": "Guindy Tech Park",
+        "elevation": 95,
+        "drainageHealth": 80,
+        "greenCover": 70
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.2770, 13.0800],
+            [80.2820, 13.0800],
+            [80.2820, 13.0850],
+            [80.2770, 13.0850],
+            [80.2770, 13.0800]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "wardId": "W-04",
+        "name": "Velachery Basin",
+        "elevation": 15,
+        "drainageHealth": 30,
+        "greenCover": 10
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [80.2650, 13.0740],
+            [80.2700, 13.0740],
+            [80.2700, 13.0790],
+            [80.2650, 13.0790],
+            [80.2650, 13.0740]
+          ]
+        ]
+      }
+    }
+  ]
+}
