@@ -15,7 +15,7 @@ export const fetchLiveWeather = async () => {
     try {
         if (!API_KEY || API_KEY.length < 10) {
             console.warn("⚠️ Weather API Key missing. Using simulated data.");
-            return { rain: 15, temp: 30, description: 'Simulated' };
+            return { rain: 0, temp: 0, description: 'Key Missing' };
         }
 
         const response = await fetch(
@@ -30,14 +30,12 @@ export const fetchLiveWeather = async () => {
 
         /**
          * BUG FIX: OpenWeather returns the 'rain' object ONLY if it's currently raining.
-         * If it's 0mm, we return a small random number (5-12) for DEMO purposes 
-         * so the dashboard isn't empty during the presentation.
+         * We return the actual rain value (or 0 if not present).
          */
         const actualRain = data.rain ? (data.rain['1h'] || 0) : 0;
-        const demoRain = actualRain > 0 ? actualRain : Math.floor(Math.random() * 8) + 5;
 
         return {
-            rain: Math.round(demoRain), 
+            rain: Math.round(actualRain), 
             temp: Math.round(data.main.temp),
             description: data.weather[0].description,
             icon: data.weather[0].icon
@@ -87,7 +85,7 @@ export const fetchChennaiForecast = async () => {
         return {
             peakPop: peakPop,
             // Force a minimum of 25mm in forecast mode for demo impact
-            peakRain: peakRain > 0 ? Math.round(peakRain) : Math.max(25, Math.round(peakPop * 50)),
+            peakRain: Math.round(peakRain),
             items: next24h
         };
     } catch (error) {
