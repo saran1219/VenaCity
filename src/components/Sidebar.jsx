@@ -28,28 +28,28 @@ const Sidebar = ({
   const handleModeChange = async (newMode) => {
     if (newMode === weatherMode) return;
     
-    setWeatherMode(newMode);
+    if (typeof setWeatherMode === 'function') setWeatherMode(newMode);
     
     if (newMode !== 'simulate') {
-      setIsSyncing(true);
+      if (typeof setIsSyncing === 'function') setIsSyncing(true);
       // Immediate fetch on mode switch for better UX
       setTimeout(async () => {
         try {
           if (newMode === 'live') {
             const data = await fetchLiveWeather();
-            setRainfallIntensity(Math.round(data.rain));
+            if (typeof setRainfallIntensity === 'function') setRainfallIntensity(Math.round(data.rain));
           } else if (newMode === 'forecast') {
             const data = await fetchChennaiForecast();
-            setRainfallIntensity(Math.round(data.peakPop * 100));
+            if (typeof setRainfallIntensity === 'function') setRainfallIntensity(Math.round(data.peakPop * 100));
           }
         } catch (err) {
           setNotification('Satellite Feed Interrupted');
         } finally {
-          setIsSyncing(false);
+          if (typeof setIsSyncing === 'function') setIsSyncing(false);
         }
       }, 2000);
     } else {
-      setIsSyncing(false);
+      if (typeof setIsSyncing === 'function') setIsSyncing(false);
     }
   };
 
@@ -173,7 +173,7 @@ const Sidebar = ({
                     max="200"
                     value={rainfallIntensity}
                     onChange={(e) => {
-                      if (weatherMode === 'simulate') {
+                      if (weatherMode === 'simulate' && typeof setRainfallIntensity === 'function') {
                         setRainfallIntensity(parseInt(e.target.value));
                       }
                     }}

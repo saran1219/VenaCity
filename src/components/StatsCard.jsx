@@ -37,7 +37,7 @@ const StatsCard = ({ rainfallIntensity, riskAssets = [], onOpenAssets }) => {
     <div className="absolute top-6 right-6 flex flex-col items-end gap-3 z-50 pointer-events-none">
       {/* High-Visibility Asset Button */}
       <button 
-        onClick={onOpenAssets}
+        onClick={(e) => onOpenAssets && onOpenAssets(e)}
         className={`pointer-events-auto group flex items-center gap-3 px-6 py-3 bg-gray-950 border border-gray-800 rounded-2xl shadow-2xl hover:border-blue-500/50 hover:bg-gray-900 transition-all duration-300 ${
           riskAssets.length > 0 ? 'animate-pulse ring-2 ring-blue-500/20' : ''
         }`}

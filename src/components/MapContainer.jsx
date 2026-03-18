@@ -57,19 +57,24 @@ const MapContainer = React.forwardRef(({ rainfallIntensity, onRiskUpdate }, ref)
     return { type: 'FeatureCollection', features: processedFeatures, atRiskAssets: atRisk };
   };
 
+  // Internal implementation of imperative methods to avoid circular ref dependency
+  const flashWardInternal = (wardId) => {
+    if (!mapRef.current) return;
+    mapRef.current.setFilter('ward-polygons', ['==', ['get', 'wardId'], wardId]);
+    setTimeout(() => { if (mapRef.current) mapRef.current.setFilter('ward-polygons', null); }, 2000);
+  };
+
+  const focusOnAssetInternal = (assetId) => {
+    const asset = CRITICAL_ASSETS.find(a => a.id === assetId);
+    if (asset && mapRef.current) {
+      mapRef.current.flyTo({ center: asset.coords, zoom: 15, duration: 2000, essential: true });
+    }
+  };
+
   // Exposed API for Dashboard interactions
   React.useImperativeHandle(ref, () => ({
-    flashWard: (wardId) => {
-      if (!mapRef.current) return;
-      mapRef.current.setFilter('ward-polygons', ['==', ['get', 'wardId'], wardId]);
-      setTimeout(() => { if (mapRef.current) mapRef.current.setFilter('ward-polygons', null); }, 2000);
-    },
-    focusOnAsset: (assetId) => {
-      const asset = CRITICAL_ASSETS.find(a => a.id === assetId);
-      if (asset && mapRef.current) {
-        mapRef.current.flyTo({ center: asset.coords, zoom: 15, duration: 2000, essential: true });
-      }
-    }
+    flashWard: flashWardInternal,
+    focusOnAsset: focusOnAssetInternal
   }));
 
   // Map Mounting & Initialization
@@ -129,7 +134,7 @@ const MapContainer = React.forwardRef(({ rainfallIntensity, onRiskUpdate }, ref)
           };
 
           // Trigger the 'flashWard' effect for visual feedback
-          if (ref.current?.flashWard) ref.current.flashWard(props.wardId);
+          flashWardInternal(props.wardId);
           
           // Dispatch official alert event for system response
           window.dispatchEvent(new CustomEvent('send-official-alert', { 

@@ -10,7 +10,7 @@ const AssetModal = ({ isOpen, onClose, riskAssets, onAssetSelect }) => {
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-gray-950/80 backdrop-blur-sm transition-opacity"
-        onClick={onClose}
+        onClick={() => onClose && onClose()}
       />
       
       {/* Modal */}
@@ -26,7 +26,7 @@ const AssetModal = ({ isOpen, onClose, riskAssets, onAssetSelect }) => {
             <p className="text-gray-400 text-sm mt-1">Real-time simulation of ward-level flooding impacts</p>
           </div>
           <button 
-            onClick={onClose}
+            onClick={() => onClose && onClose()}
             className="p-2 hover:bg-gray-800 rounded-full text-gray-400 hover:text-white transition-all"
           >
             <X size={24} />
@@ -41,7 +41,7 @@ const AssetModal = ({ isOpen, onClose, riskAssets, onAssetSelect }) => {
             return (
               <div 
                 key={asset.id}
-                onClick={() => onAssetSelect(asset.id)}
+                onClick={() => onAssetSelect && onAssetSelect(asset.id)}
                 className={`group cursor-pointer p-4 rounded-2xl border transition-all duration-300 flex items-center gap-4 ${
                   isAtRisk 
                     ? 'bg-red-950/20 border-red-900/50 hover:border-red-500 shadow-inner' 
